@@ -10,14 +10,58 @@ using UnityEngine.UI;
 
 public class GameOfLifeTileMap : MonoBehaviour
 {
+    [Serializable]
+    public struct customRules
+    {
+        public List<int> customBirthRule; // Hey! You can edit your own birth rule on start if you'd like!
+        public List<int> customSurviveRule;
+    }
+
+    public List<customRules> customRulesList = new List<customRules>();
+
+    /// <summary>
+    /// Use this custom rules creator to create your own cellular automata rules in engine.
+    /// </summary>
+
     //Recover objects in Unity to interact with
+
     public GameObject BirthRulesetField;
     public GameObject SurviveRulesetField;
     public Tilemap tilemap;
     public Tile aliveTile;
     public int neighborSurvive;
     public List<int> BirthRule = new List<int>(); // Hey! You can edit your own birth rule on start if you'd like!
-    public List<int> SurviveRule = new List<int>();// Give it a try by modifying this and the above list in the API
+    public List<int> SurviveRule = new List<int>(); // Give it a try by modifying this and the above list in the API
+
+    /// <summary>
+    /// These rulesets are provided as examples. Each has a descriptor. 
+    /// The birth ruleset denotes the required active tiles around a tile to allow burth. 
+    /// Each number in the birth list is an acceptable number of neighboring tiles to allow a birth.
+    /// The same logic applies for the survival list.
+    /// The first example is Conways game of life. The most famous example of cellular automata.
+    /// </summary>
+    //Existing Rulesets  (   In the future, it would be excellent to make a feature to create list pairs for new rulesets   )
+    public List<int> ConwaysLifeBirth = new List<int>();
+    public List<int> ConwaysLifeSurvive = new List<int>();
+
+    /// <summary>
+    /// The following is my favourite example of C.A.
+    /// Day and night is a unique ruleset in which patterns are interchangeable in behavior regardless of their color.
+    /// A dark pattern on white will act in the exact same way as its identical white counterpart on black.
+    /// This results from the ruleset being a mirror of itself.
+    /// </summary>
+    public List<int> DaynNightBirth = new List<int>();
+    public List<int> DaynNightSurvive = new List<int>();
+    /// <summary>
+    /// !!!WARNING!!! This rulset is slightly unstable. You can get great explosive visuals using this ruleset.
+    /// </summary>
+    public List<int> ExplodeBirth = new List<int>();
+    public List<int> ExplodeSurvive = new List<int>();
+    /// <summary>
+    /// This ruleset is a tamed version of the above. You will get post modern fractal effects as a result of running this C.A.
+    /// </summary>
+    public List<int> CyberPunkBirth = new List<int>();
+    public List<int> CyberPunkSurvive = new List<int>();
 
 
     //Failed rate of update button, instead I use a repeat script
@@ -26,24 +70,18 @@ public class GameOfLifeTileMap : MonoBehaviour
     //This was meant to go in conjuction with the rate button, however instead repeat script manages this.
     public bool updateButton = false;
 
-    //Existing Rulesets  (   In the future, it would be excellent to make a feature to create list pairs for new rulesets   )
-    public List<int> ConwaysLifeBirth = new List<int>();
-    public List<int> ConwaysLifeSurvive = new List<int>();
-
-    public List<int> DaynNightBirth = new List<int>();
-    public List<int> DaynNightSurvive = new List<int>();
-
-    public List<int> ExplodeBirth = new List<int>();
-    public List<int> ExplodeSurvive = new List<int>();
-
-    public List<int> CyberPunkBirth = new List<int>();
-    public List<int> CyberPunkSurvive = new List<int>();
-
-
     public void Start()
     {
         //The only start up operation is to reset the text to correspond to the rules that you start with
         ResetRuleText();
+        if (customRulesList.Count > 0 ) 
+        {
+            for (int i = 0; i < customRulesList.Count; i++)
+            {
+                //customRulesList[i].customBirthRule = new List<customRules>();
+                //customRulesList[i].customSurviveRule = new List<customRules>();
+            }
+        }
     }
     public void ResetRuleText()
     {

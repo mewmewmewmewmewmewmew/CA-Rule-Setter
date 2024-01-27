@@ -2951,6 +2951,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768b16406fa6cf340be7044744d7bfa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customRulesList:
+  - customBirthRule: 0000000000000000
+    customSurviveRule: 
   BirthRulesetField: {fileID: 672451896}
   SurviveRulesetField: {fileID: 1917648618}
   tilemap: {fileID: 1182313287}
@@ -2958,8 +2961,6 @@ MonoBehaviour:
   neighborSurvive: 3
   BirthRule: 03000000
   SurviveRule: 0200000003000000
-  rate: 0.001
-  updateButton: 0
   ConwaysLifeBirth: 03000000
   ConwaysLifeSurvive: 0200000003000000
   DaynNightBirth: 03000000060000000700000008000000
@@ -2968,6 +2969,8 @@ MonoBehaviour:
   ExplodeSurvive: 
   CyberPunkBirth: 0300000002000000
   CyberPunkSurvive: 
+  rate: 0.001
+  updateButton: 0
 --- !u!114 &1182313292
 MonoBehaviour:
   m_ObjectHideFlags: 0
