@@ -2952,8 +2952,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customRulesList:
-  - customBirthRule: 0000000000000000
-    customSurviveRule: 
+  - RuleName: conWayn't
+    customBirthRule: 03000000
+    customSurviveRule: 020000000300000007000000
+  - RuleName: woah another ruleset
+    customBirthRule: 0200000001000000
+    customSurviveRule: 04000000050000000700000002000000
   BirthRulesetField: {fileID: 672451896}
   SurviveRulesetField: {fileID: 1917648618}
   tilemap: {fileID: 1182313287}

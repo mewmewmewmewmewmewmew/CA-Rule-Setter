@@ -10,18 +10,19 @@ using UnityEngine.UI;
 
 public class GameOfLifeTileMap : MonoBehaviour
 {
+    /// <summary>
+    /// Use this custom rules creator to create your own cellular automata rules in the inspector.
+    /// </summary>
     [Serializable]
     public struct customRules
     {
+        public string RuleName;
         public List<int> customBirthRule; // Hey! You can edit your own birth rule on start if you'd like!
         public List<int> customSurviveRule;
     }
 
     public List<customRules> customRulesList = new List<customRules>();
-
-    /// <summary>
-    /// Use this custom rules creator to create your own cellular automata rules in engine.
-    /// </summary>
+    int customRulesIndex;
 
     //Recover objects in Unity to interact with
 
@@ -144,6 +145,22 @@ public class GameOfLifeTileMap : MonoBehaviour
 
     }
 
+    public void SetCustomRules()
+    {
+        if(customRulesIndex > customRulesList.Count - 1)
+        {
+            customRulesIndex = 0;
+        }
+
+        ClearRules();
+        BirthRule.AddRange(customRulesList[customRulesIndex].customBirthRule);
+        SurviveRule.AddRange(customRulesList[customRulesIndex].customSurviveRule);
+        ResetRuleText();
+
+        customRulesIndex++;
+
+    }
+
     //On update, check if the update life button is hit.
     public void Update()
     {
@@ -151,6 +168,10 @@ public class GameOfLifeTileMap : MonoBehaviour
         {
             UpdateLife();
             updateButton= false;
+        }
+        if (Input.GetKeyDown(KeyCode.N)) 
+        {
+            SetCustomRules();
         }
 
     }
