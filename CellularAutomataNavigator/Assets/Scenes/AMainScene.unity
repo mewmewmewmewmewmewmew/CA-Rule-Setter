@@ -2958,6 +2958,9 @@ MonoBehaviour:
   - RuleName: woah another ruleset
     customBirthRule: 0300000004000000
     customSurviveRule: 040000000500000002000000
+  - RuleName: Vincent Ruleset
+    customBirthRule: 0500000006000000
+    customSurviveRule: 040000000300000002000000
   BirthRulesetField: {fileID: 672451896}
   SurviveRulesetField: {fileID: 1917648618}
   tilemap: {fileID: 1182313287}
